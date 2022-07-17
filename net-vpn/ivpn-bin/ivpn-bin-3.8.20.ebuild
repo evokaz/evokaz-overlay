@@ -45,6 +45,7 @@ pkg_postinst() {
 
 pkg_postrm() {
 	[[ -f "$ROOT/usr/bin/ivpn-service" ]] || rm /etc/init.d/ivpn-service
+	[ -f "$ROOT/usr/bin/ivpn-service" ] || { systemctl disable ivpn-service.service; rm /etc/systemd/system/ivpn-service.service; }
 	[[ -f "$ROOT/usr/bin/ivpn-service" ]] || rm -rf /usr/share/pleaserun
 	[[ -f "$ROOT/usr/bin/ivpn" ]] || rm -rf /opt/ivpn
 }

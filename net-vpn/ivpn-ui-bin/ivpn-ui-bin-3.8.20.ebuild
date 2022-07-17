@@ -11,7 +11,7 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND="net-vpn/ivpn-bin"
+DEPEND="=net-vpn/ivpn-bin-${PV}"
 RDEPEND="${DEPEND}"
 #BDEPEND=""
 
@@ -30,9 +30,6 @@ src_unpack() {
 src_install() {
 	cp -r "${S}/usr" "${D}/" || die
 	cp -r "${S}/opt" "${D}/" || die
-	[[ -d "${D}/usr/share/pleaserun/ivpn-ui" ]] || mkdir -p ${D}/usr/share/pleaserun/ivpn-ui
-	cp "${S}/prerm" "${D}/usr/share/pleaserun/ivpn-ui/prerm" || die
-	cp "${S}/postrm" "${D}/usr/share/pleaserun/ivpn-ui/postrm" || die
 }
 
 pkg_preinst() {
@@ -43,10 +40,3 @@ pkg_postinst() {
 	sh ${S}/postinst
 }
 
-pkg_prerm() {
-	sh /usr/share/pleaserun/ivpn-ui/prerm
-}
-
-pkg_postrm() {
-	sh /usr/share/pleaserun/ivpn-ui/postrm
-}

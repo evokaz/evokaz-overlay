@@ -33,8 +33,6 @@ src_unpack() {
 src_install() {
 	cp -r "${S}/usr" "${D}/" || die
 	cp -r "${S}/opt" "${D}/" || die
-	cp "${S}/prerm" "${D}/usr/share/pleaserun/ivpn-service/prerm" || die
-	cp "${S}/postrm" "${D}/usr/share/pleaserun/ivpn-service/postrm" || die
 }
 
 pkg_preinst() {
@@ -45,13 +43,8 @@ pkg_postinst() {
 	sh ${S}/postinst
 }
 
-pkg_prerm() {
-	sh /usr/share/pleaserun/ivpn-service/prerm
-}
-
 pkg_postrm() {
-	sh /usr/share/pleaserun/ivpn-service/postrm
-	# cleanup other files
-	if [ -d "/usr/share/pleaserun" ]; then rm -rf /usr/share/pleaserun; fi
-	if [ -e "/etc/init.d/ivpn-service" ]; then rm -rf /etc/init.d/ivpn-service; fi
+	[[ -f "$ROOT/usr/bin/ivpn-service" ]] || rm /etc/init.d/ivpn-service
+	[[ -f "$ROOT/usr/bin/ivpn-service" ]] || rm -rf /usr/share/pleaserun
+	[[ -f "$ROOT/usr/bin/ivpn" ]] || rm -rf /opt/ivpn
 }

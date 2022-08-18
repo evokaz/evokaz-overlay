@@ -11,7 +11,7 @@ LICENSE="GPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 
-DEPEND="=net-vpn/ivpn-bin-${PV}
+DEPEND=">=net-vpn/ivpn-bin-${PV}
 	x11-libs/libxkbcommon"
 RDEPEND="${DEPEND}"
 #BDEPEND=""

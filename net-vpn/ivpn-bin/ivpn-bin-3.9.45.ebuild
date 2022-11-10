@@ -5,7 +5,7 @@ EAPI=8
 
 DESCRIPTION="IVPN Binary Package"
 HOMEPAGE="https://www.ivpn.net"
-SRC_URI="https://repo.ivpn.net/stable/pool/ivpn_3.9.32_amd64.deb"
+SRC_URI="https://repo.ivpn.net/stable/pool/ivpn_3.9.45_amd64.deb"
 
 LICENSE="GPL-3"
 SLOT="0"

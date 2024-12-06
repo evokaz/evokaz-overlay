@@ -5,7 +5,7 @@ EAPI=8
 
 DESCRIPTION="Obsidian is a powerful knowledge base on top of a local folder of plain text Markdown files. "
 HOMEPAGE="https://obsidian.md"
-SRC_URI="https://github.com/obsidianmd/obsidian-releases/releases/download/v0.15.9/obsidian_0.15.9_amd64.deb"
+SRC_URI="https://github.com/obsidianmd/obsidian-releases/releases/download/v${PV}/obsidian_${PV}_amd64.deb"
 
 LICENSE="EULA"
 SLOT="0"
@@ -25,9 +25,12 @@ src_unpack() {
 	unpack ${A}
 	unpack $WORKDIR/control.tar.gz
 	unpack $WORKDIR/data.tar.xz
-	mv $WORKDIR/* ${S}/
-	mv ${S}/usr/share/doc/obsidian ${S}/usr/share/doc/${PF}
-	gunzip ${S}/usr/share/doc/${PF}/changelog.gz
+	mv ${WORKDIR}/usr/share/doc/obsidian ${WORKDIR}/usr/share/doc/${PF}
+	unpack ${WORKDIR}/usr/share/doc/${PF}/changelog.gz
+	mv ${WORKDIR}/usr ${S}/
+	mv ${WORKDIR}/opt ${S}/
+	mv ${WORKDIR}/postinst ${S}/
+	mv ${WORKDIR}/postrm ${S}/
 }
 
 src_install() {
